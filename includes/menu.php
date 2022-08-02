@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg bg-light">
+<nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">SCI Test</a>
+        <a class="navbar-brand" href="#"><img width="75" src="assets/images/logo/logo-sci.png" alt="logo"></a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -18,6 +18,8 @@
                     <a class="nav-link nav-link-font-size" href="espaco-de-cafe">Espaço de café</a>
                 </li>
             </ul>
+            <div class="division ms-3 me-3">.</div>
+            <span class="d-flex align-items-center"><i class='bx bxs-user-circle me-2' style="font-size:20px;"></i> <?= $_SESSION['usuario'] ?></span>
         </div>
     </div>
 </nav>

@@ -1,0 +1,20 @@
+RewriteEngine On
+#RewriteCond %{SERVER_PORT} 80
+#RewriteRule ^(.*)$ https://dominio.com.br/$1 [R,L]
+
+# Reescreve as URLs
+RewriteCond %{REQUEST_FILENAME} !-d 
+RewriteCond %{REQUEST_FILENAME}\.php -f 
+RewriteRule ^(.*)$ $1.php [L]
+
+#Não permite visualização das pastas pela URL
+Options -Indexes
+
+ErrorDocument 403  localhost:8080/sci_test/pagina-nao-encontrada
+ErrorDocument 404  localhost:8080/sci_test/pagina-nao-encontrada
+ErrorDocument 405  localhost:8080/sci_test/pagina-nao-encontrada
+ErrorDocument 406  localhost:8080/sci_test/pagina-nao-encontrada
+ErrorDocument 407  localhost:8080/sci_test/pagina-nao-encontrada
+ErrorDocument 408  localhost:8080/sci_test/pagina-nao-encontrada
+ErrorDocument 409  localhost:8080/sci_test/pagina-nao-encontrada
+ErrorDocument 500  localhost:8080/sci_test/pagina-nao-encontrada

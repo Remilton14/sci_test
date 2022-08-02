@@ -1,6 +1,21 @@
+.main_login{
+    background-color: #22315e !important;
+}
+.shadow_login{
+    box-shadow: 0 .5rem 1rem rgba(250,250,250,.15)!important;
+}
 .login_height{
     height: 100vh;
 }
 .nav-link-font-size{
     font-size: 17px !important;
+}
+.division{
+    background-color: #c2c2c2 !important;
+    color: #ffffff !important;
+    width: 1px !important;
+}
+.btn-cadastro{
+    margin-top: 5px !important;
+    right: 10% !important;
 }
