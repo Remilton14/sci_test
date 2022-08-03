@@ -13,18 +13,12 @@ if(isset($_GET['id_pessoa']) && !empty($_GET['id_pessoa']))
 
     $linha_afetada = mysqli_affected_rows($conn);
 
-    var_dump($linha_afetada);
-    echo "<br/>";
-    
     if($linha_afetada === 1){
 
         //Busca o lotação máxima da sala escolhida
         $sql_lotacao_max       = "SELECT `lotacao_sala`,`qnt_inscritos` FROM `sala_evento` WHERE `id_sala` = $salao_eventos";
-        var_dump($sql_lotacao_max);
-        echo "<br/>";
         $sql_lotacao_max_query = mysqli_query($conn, $sql_lotacao_max);
         $sql_lotacao_max_assoc  = mysqli_fetch_assoc($sql_lotacao_max_query);
-        var_dump($sql_lotacao_max_assoc['qnt_inscritos']);
 
         //Atualiza as vagas
         $novo_inscrito       = $sql_lotacao_max_assoc['qnt_inscritos'] - 1;
@@ -32,10 +26,10 @@ if(isset($_GET['id_pessoa']) && !empty($_GET['id_pessoa']))
         $sql_update_qtn_incritos_query = mysqli_query($conn, $sql_update_qtn_incritos);
 
         mysqli_close($conn);
-        $_SESSION['msg_success'] = "<p id='msg' style='background-color: #3b9d6f;color:#fff;padding: 10px;width: 40%;position: absolute;bottom: 51px;right: 0;box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;'>Pessoa deletada com sucesso</p>";
-        //header('Location: ../pessoa');
+        $_SESSION['msg_success'] = "<p id='msg' style='background-color: #3b9d6f;color:#fff;padding: 10px;width: 40%;position: absolute;bottom: 40px;right: 0;box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;'>Pessoa deletada com sucesso</p>";
+        header('Location: ../pessoa');
     }else{
         mysqli_close($conn);
-        $_SESSION['msg_error'] = "<p id='msg' style='background-color: #d75656;color:#fff;padding: 10px;width: 40%;position: absolute;bottom: 51px;right: 0;box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;'>Não foi possível apagar este registro</p>";    
-        //header('Location: ../pessoa');
+        $_SESSION['msg_error'] = "<p id='msg' style='background-color: #d75656;color:#fff;padding: 10px;width: 40%;position: absolute;bottom: 40px;right: 0;box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;'>Não foi possível apagar este registro</p>";    
+        header('Location: ../pessoa');
     }

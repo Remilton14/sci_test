@@ -23,10 +23,10 @@ if($_POST && !empty($_POST))
 
             if($num_linha_afetada === 1){
                 mysqli_close($conn);
-                $_SESSION['msg_success'] = "<p id='msg' style='background-color: #3b9d6f;color:#fff;padding: 10px;width: 40%;position: absolute;bottom: 51px;right: 0;box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;'>Sucesso na edição</p>";
+                $_SESSION['msg_success'] = "<p id='msg' style='background-color: #3b9d6f;color:#fff;padding: 10px;width: 40%;position: absolute;bottom: 40px;right: 0;box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;'>Sucesso na edição</p>";
                 header('Location: ../pessoa');
             }else{
                 mysqli_close($conn);
-                $_SESSION['msg_error'] = "<p id='msg' style='background-color: #d75656;color:#fff;width: 40%;position: absolute;bottom: 51px;right: 0;box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;'>Não foi possível editar</p>";
+                $_SESSION['msg_error'] = "<p id='msg' style='background-color: #d75656;color:#fff;width: 40%;position: absolute;bottom: 40px;right: 0;box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;'>Não foi possível editar</p>";
                 header('Location: ../pessoa');
             }

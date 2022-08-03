@@ -68,11 +68,12 @@
                                         <select class="form-select" aria-label="Default select example" name="salao_eventos" id="salao_eventos">
                                             <option value="" selected>Selecione uma opção</option>
                                             <?php
-                                                $sql_cafe = "SELECT * FROM `sala_evento` WHERE 1";
-                                                $sql_cafe_query = mysqli_query($conn,$sql_cafe);
+                                                $sql_salao = "SELECT * FROM `sala_evento` WHERE 1";
+                                                $sql_salao_query = mysqli_query($conn,$sql_salao);
 
-                                                while($sql_cafe_assoc = mysqli_fetch_assoc($sql_cafe_query)){
-                                                    echo "<option value='".$sql_cafe_assoc['id_sala']."'>".$sql_cafe_assoc['nome_sala']." - ".$sql_cafe_assoc['lotacao_sala']." vagas</option>";
+                                                while($sql_salao_assoc = mysqli_fetch_assoc($sql_salao_query)){
+                                                    if(($sql_salao_assoc['lotacao_sala']-$sql_salao_assoc['qnt_inscritos']) != 0)
+                                                        echo "<option value='".$sql_salao_assoc['id_sala']."'>".$sql_salao_assoc['nome_sala']." - ".($sql_salao_assoc['lotacao_sala']-$sql_salao_assoc['qnt_inscritos'])." vagas</option>";
                                                 }
                                             ?>
                                         </select>
@@ -285,7 +286,7 @@
                                                 <!-- Fim edição -->
 
                                                 <!-- Delete -->
-                                                <a href="class/Class.delete.pessoa.php?id_pessoa=<?= $sql_pessoas_assoc['id_pessoa'] ?>" class="d-flex justify-content-center align-items-center bg-primary text-light rounded-circle me-2" style="width:31px;height:31px;text-decoration: none;"><i class='bx bx-message-alt-x'></i></a>
+                                                <a href="class/Class.delete.pessoa.php?id_pessoa=<?= $sql_pessoas_assoc['id_pessoa'] ?>&salao_eventos=<?= $sql_pessoas_assoc['sala_id'] ?>" class="d-flex justify-content-center align-items-center bg-primary text-light rounded-circle me-2" style="width:31px;height:31px;text-decoration: none;"><i class='bx bx-message-alt-x'></i></a>
                                                 
                                             </div>
                                         </td>
@@ -301,10 +302,10 @@
         <?php
             if(isset($_SESSION['msg_success'])){
                 echo $_SESSION['msg_success'];
-                unset($_SESSION['msg_success']);
+                //unset($_SESSION['msg_success']);
             }elseif(isset($_SESSION['msg_error'])){
                 echo $_SESSION['msg_error'];
-                unset($_SESSION['msg_error']);
+                //unset($_SESSION['msg_error']);
             }
         ?>
     </main>
@@ -316,6 +317,13 @@
     <script type="text/javascript" src="assets/js/pessoas.js"></script>
     <script>
         $(document).ready(function(){
+            const msg_success = <?php echo (isset($_SESSION['msg_success'])) ? 1 : 0 ?>;
+            const msg_error = <?php echo (isset($_SESSION['msg_error'])) ? 1 : 0 ?>;
+            if(msg_success === 1 || msg_error === 1){
+                setTimeout(() => {
+                    $('#msg').remove();
+                }, 3200);
+            }
             //edição
             var arr_pessoas = ["<?php echo implode('","',$arr_pessoas); ?>"];
 
@@ -361,7 +369,7 @@
                         $('#error_msg_notification_edicao').append('<span>Os tempos dos cafés precisam ser diferentes</span>');
                         setTimeout(() => {
                             $('#error_msg_notification_edicao').empty();
-                        }, 3000);
+                        }, 3200);
                     }
                 });
 
@@ -379,7 +387,7 @@
                         $('#error_msg_notification_edicao').append('<span">O campo nome precisa ser preenchido corretamente</span>');
                         setTimeout(() => {
                             $('#error_msg_notification_edicao').empty();
-                        }, 3000);
+                        }, 3200);
                         
                     }else if(sobre_nome == ''){
                         $('#sobre_nome' + value).addClass('border border-danger');
@@ -388,7 +396,7 @@
                         $('#error_msg_notification_edicao').append('<span">O campo sobre nome precisa ser preenchido corretamente</span>');
                         setTimeout(() => {
                             $('#error_msg_notification_edicao').empty();
-                        }, 3000);
+                        }, 3200);
 
                     }else if(salao_eventos  == ''){
                         $('#salao_eventos' + value).addClass('border border-danger');
@@ -396,7 +404,7 @@
                         $('#error_msg_notification_edicao').append('<span">O campo Salão de eventos precisa ser preenchido corretamente</span>');
                         setTimeout(() => {
                             $('#error_msg_notification_edicao').empty();
-                        }, 3000);
+                        }, 3200);
 
                         $('#salao_eventos' + value).focus();
                     }else if(periodo_cafe_1 == ''){
@@ -406,7 +414,7 @@
                         $('#error_msg_notification_edicao').append('<span">O campo Período café um precisa ser preenchido corretamente</span>');
                         setTimeout(() => {
                             $('#error_msg_notification_edicao').empty();
-                        }, 3000);
+                        }, 3200);
 
                     }else if(periodo_cafe_2 == ''){
                         $('#periodo_cafe_2' + value).addClass('border border-danger');
@@ -415,7 +423,7 @@
                         $('#error_msg_notification_edicao').append('<span">O campo Período café um precisa ser preenchido corretamente</span>');
                         setTimeout(() => {
                             $('#error_msg_notification_edicao').empty();
-                        }, 3000);
+                        }, 3200);
 
                     }else if(periodo_cafe_1 == periodo_cafe_2){
                         $('#periodo_cafe_1' + value).addClass('border border-danger');
@@ -425,7 +433,7 @@
                         $('#error_msg_notification_edicao').append('<span>Os tempos dos cafés precisam ser diferentes</span>');
                         setTimeout(() => {
                             $('#error_msg_notification_edicao').empty();
-                        }, 3000);
+                        }, 3200);
                     }else{
                         $('#form_edicao' + value).submit();
                     }
@@ -439,5 +447,14 @@
 </body>
 </html>
 <?php
+        
+        if(isset($_SESSION['msg_success'])){
+            //echo $_SESSION['msg_success'];
+            unset($_SESSION['msg_success']);
+        }elseif(isset($_SESSION['msg_error'])){
+            //echo $_SESSION['msg_error'];
+            unset($_SESSION['msg_error']);
+        }
+
     }
 ?>
