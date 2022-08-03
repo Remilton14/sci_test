@@ -18,7 +18,7 @@
         border-radius: 100% !important;
         padding: 5px 15px !important;
     }
-    #tabela_pessoas_filter{
+    #table_sala_evento_filter{
         margin-right:10% !important;
     }
     .form-control:focus ,.form-select:focus {
@@ -74,33 +74,107 @@
             </div>
             <!-- Fim novo cadastro -->
             <div class="tabela">
-                <table class="table table-striped" id="table_sala_eventos">
+                <table class="table table-striped" id="table_sala_evento">
                     <thead>
                         <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                            <th scope="col">Cód</th>
+                            <th scope="col">Nome da sala</th>
+                            <th scope="col">Lotação max.</th>
+                            <th scope="col">Inscritos</th>
+                            <th scope="col">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        </tr>
-                        <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        </tr>
-                        <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                        </tr>
+                        <?php
+                            $sql_salas = "SELECT * FROM `sala_evento` WHERE 1";
+                            $sql_salas_query = mysqli_query($conn, $sql_salas);
+
+                            while($sql_salas_assoc = mysqli_fetch_assoc($sql_salas_query)){
+                                ?>
+                                    <tr style="font-size:0.8769rem;">
+                                        <th scope="row"><?= $sql_salas_assoc['id_sala'] ?></th>
+                                        <td><?= $sql_salas_assoc['nome_sala'] ?></td>
+                                        <td><?= $sql_salas_assoc['lotacao_sala'] ?></td>
+                                        <td><?= $sql_salas_assoc['qnt_inscritos'] ?></td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <!-- Visualização -->
+                                                <a type="button" class="d-flex justify-content-center align-items-center bg-primary text-light rounded-circle me-2" style="width:31px;height:31px;text-decoration: none;" data-bs-toggle="modal" data-bs-target="#visualizacao<?= $sql_salas_assoc['id_sala'] ?>"><i class='bx bx-zoom-in'></i></a>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="visualizacao<?= $sql_salas_assoc['id_sala'] ?>" tabindex="-1" aria-labelledby="visualizacao<?= $sql_salas_assoc['id_sala'] ?>Label" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="visualizacao<?= $sql_salas_assoc['id_sala'] ?>Label">Visialização <?= $sql_salas_assoc['id_sala'] ?></h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form id="form_sala_evento_edicao<?= $sql_salas_assoc['id_sala'] ?>">
+                                                                    <div class="row">
+                                                                        <div class="col mb-3">
+                                                                            <label for="nome_sala_de_evento" class="form-label">Nome sala de Eventos</label>
+                                                                            <input type="text" class="form-control" value="<?= $sql_salas_assoc['nome_sala'] ?>" disabled>
+                                                                        </div>
+                                                                        <div class="col mb-3">
+                                                                            <label for="lotacao_sala_evento" class="form-label">Lotação da sala</label>
+                                                                            <input type="number" class="form-control" value="<?= $sql_salas_assoc['lotacao_sala'] ?>" disabled>
+                                                                        </div>
+                                                                    </div>
+                                                                
+                                                                    <div class="modal-footer border-0">
+                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Fim Visualização -->
+
+
+                                                <!-- Edição -->
+                                                <a type="button" class="d-flex justify-content-center align-items-center bg-primary text-light rounded-circle me-2" style="width:31px;height:31px;text-decoration: none;" data-bs-toggle="modal" data-bs-target="#edicao<?= $sql_salas_assoc['id_sala'] ?>"><i class='bx bxs-edit'></i></a>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="edicao<?= $sql_salas_assoc['id_sala'] ?>" tabindex="-1" aria-labelledby="edicao<?= $sql_salas_assoc['id_sala'] ?>Label" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="edicao<?= $sql_salas_assoc['id_sala'] ?>Label">Visialização <?= $sql_salas_assoc['id_sala'] ?></h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form action="class/Class.edicao.sala.eventos.php" method="post" id="form_sala_evento_edicao<?= $sql_salas_assoc['id_sala'] ?>">
+                                                                    <div class="row">
+                                                                        <div class="col mb-3">
+                                                                            <label for="nome_sala_de_evento" class="form-label">Nome sala de Eventos</label>
+                                                                            <input type="text" class="form-control" name="nome_sala_de_evento" id="nome_sala_de_evento<?= $sql_salas_assoc['id_sala'] ?>" value="<?= $sql_salas_assoc['nome_sala'] ?>">
+                                                                        </div>
+                                                                        <div class="col mb-3">
+                                                                            <label for="lotacao_sala_evento" class="form-label">Lotação da sala</label>
+                                                                            <input type="number" class="form-control" name="lotacao_sala_evento" id="lotacao_sala_evento<?= $sql_salas_assoc['id_sala'] ?>" value="<?= $sql_salas_assoc['lotacao_sala'] ?>">
+                                                                        </div>
+                                                                    </div>
+                                                                
+                                                                    <div class="modal-footer border-0">
+                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                                                        <input type="button" class="btn btn-primary" name="btn_edicao_evento" id="btn_edicao_evento<?= $sql_salas_assoc['id_sala'] ?>" value="Editar">
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Fim edição -->
+
+                                                <!-- Delete -->
+                                                <a href="class/Class.delete.sala.evento.php?id_sala=<?= $sql_salas_assoc['id_sala'] ?>" class="d-flex justify-content-center align-items-center bg-primary text-light rounded-circle me-2" style="width:31px;height:31px;text-decoration: none;"><i class='bx bx-message-alt-x'></i></a>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php
+                            }
+                        ?>
                     </tbody>
                 </table>
             </div>

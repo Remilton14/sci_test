@@ -3,7 +3,6 @@ session_start();
 date_default_timezone_set('America/Sao_Paulo');
 include_once 'Class.Conection.php';
 
-
 if($_POST && !empty($_POST))
     if(!empty($_POST['nome']) && !empty($_POST['sobre_nome']) && !empty($_POST['salao_eventos']) && !empty($_POST['periodo_cafe_1']) && !empty($_POST['periodo_cafe_2']))
 

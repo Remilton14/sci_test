@@ -1,9 +1,9 @@
 $(document).ready( function () {
-    // $('#table_sala_eventos').DataTable({
-    //     "language": {
-    //         "url": "//cdn.datatables.net/plug-ins/1.12.1/i18n/pt-BR.json"
-    //     }
-    // });
+    $('#table_sala_evento').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.12.1/i18n/pt-BR.json"
+        }
+    });
 
     $('#nome_sala_de_evento').blur(function(){
         if($(this).val() != ''){
