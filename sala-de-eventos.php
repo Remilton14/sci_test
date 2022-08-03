@@ -86,10 +86,12 @@
                     </thead>
                     <tbody>
                         <?php
+                            $arr_salas = array();
                             $sql_salas = "SELECT * FROM `sala_evento` WHERE 1";
                             $sql_salas_query = mysqli_query($conn, $sql_salas);
 
                             while($sql_salas_assoc = mysqli_fetch_assoc($sql_salas_query)){
+                                array_push($arr_salas,$sql_salas_assoc['id_sala']);
                                 ?>
                                     <tr style="font-size:0.8769rem;">
                                         <th scope="row"><?= $sql_salas_assoc['id_sala'] ?></th>
@@ -109,7 +111,7 @@
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <form id="form_sala_evento_edicao<?= $sql_salas_assoc['id_sala'] ?>">
+                                                                <form>
                                                                     <div class="row">
                                                                         <div class="col mb-3">
                                                                             <label for="nome_sala_de_evento" class="form-label">Nome sala de Eventos</label>
@@ -143,7 +145,8 @@
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <form action="class/Class.edicao.sala.eventos.php" method="post" id="form_sala_evento_edicao<?= $sql_salas_assoc['id_sala'] ?>">
+                                                                <form action="class/Class.edicao.sala.eventos.php" method="post" id="sala_evento_edicao<?= $sql_salas_assoc['id_sala'] ?>">
+                                                                    <input type="hidden" name="id_sala" value="<?= $sql_salas_assoc['id_sala'] ?>"">
                                                                     <div class="row">
                                                                         <div class="col mb-3">
                                                                             <label for="nome_sala_de_evento" class="form-label">Nome sala de Eventos</label>
@@ -156,10 +159,11 @@
                                                                     </div>
                                                                 
                                                                     <div class="modal-footer border-0">
-                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                                                        <input type="button" class="btn btn-primary" name="btn_edicao_evento" id="btn_edicao_evento<?= $sql_salas_assoc['id_sala'] ?>" value="Editar">
+                                                                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fechar</button>
+                                                                        <input type="button" class="btn btn-primary btn-sm" name="btn_edicao_evento" id="btn_edicao_evento<?= $sql_salas_assoc['id_sala'] ?>" value="Editar">
                                                                     </div>
                                                                 </form>
+                                                                <div class="error_msg_notification_edicao position-absolute text-danger" id="error_msg_notification_edicao" style="bottom: 10px;"></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -204,6 +208,54 @@
             }
 
             //edição
+            var arr_salas = ["<?php echo implode('","',$arr_salas); ?>"];
+
+            $.each(arr_salas,function(index,value){
+
+                $('#nome_sala_de_evento' + value).blur(function(){
+                    if($(this).val() != ''){
+                        $(this).removeClass('border border-danger');
+                    }
+                });
+
+                $('#lotacao_sala_evento' + value).blur(function(){
+                    if($(this).val() != ''){
+                        $(this).removeClass('border border-danger');
+                    }
+                });
+
+                $('#btn_edicao_evento' + value).click(function(){
+
+                    var nome_sala_de_evento = $('#nome_sala_de_evento' + value).val();
+                    var lotacao_sala_evento = $('#lotacao_sala_evento' + value).val();
+
+                    if(nome_sala_de_evento == ''){
+
+                        $('#nome_sala_de_evento' + value).addClass('border border-danger');
+                        $('#nome_sala_de_evento' + value).focus();
+                        
+                        $('#error_msg_notification_edicao').append('<span">O campo nome precisa ser preenchido corretamente</span>');
+                        setTimeout(() => {
+                            $('#error_msg_notification_edicao').empty();
+                        }, 3200);
+
+                    }else if(lotacao_sala_evento == ''){
+
+                        $('#lotacao_sala_evento' + value).addClass('border border-danger');
+                        $('#lotacao_sala_evento' + value).focus();
+                        
+                        $('#error_msg_notification_edicao').append('<span">O campo nome precisa ser preenchido corretamente</span>');
+                        setTimeout(() => {
+                            $('#error_msg_notification_edicao').empty();
+                        }, 3200);
+
+                    }else{
+                        $('#sala_evento_edicao' + value).submit();
+                    }
+
+                });
+
+            });
         });    
     </script>
 </body>

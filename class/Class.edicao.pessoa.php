@@ -3,8 +3,8 @@ session_start();
 date_default_timezone_set('America/Sao_Paulo');
 include_once 'Class.Conection.php';
 
-if($_POST && !empty($_POST))
-    if(!empty($_POST['nome']) && !empty($_POST['sobre_nome']) && !empty($_POST['salao_eventos']) && !empty($_POST['periodo_cafe_1']) && !empty($_POST['periodo_cafe_2']))
+if($_POST && !empty($_POST)){
+    if(!empty($_POST['nome']) && !empty($_POST['sobre_nome']) && !empty($_POST['salao_eventos']) && !empty($_POST['periodo_cafe_1']) && !empty($_POST['periodo_cafe_2'])){
 
         $data_atual     = date('Y-m-d H:i:s');
         $id_pessoa      = filter_input(INPUT_POST,'id_pessoa',FILTER_SANITIZE_NUMBER_INT);
@@ -26,6 +26,8 @@ if($_POST && !empty($_POST))
                 header('Location: ../pessoa');
             }else{
                 mysqli_close($conn);
-                $_SESSION['msg_error'] = "<p id='msg' style='background-color: #d75656;color:#fff;width: 40%;position: absolute;bottom: 40px;right: 0;box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;'>Não foi possível editar</p>";
+                $_SESSION['msg_error'] = "<p id='msg' style='background-color: #d75656;color:#fff;padding:10px;width: 40%;position: absolute;bottom: 40px;right: 0;box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;'>Não foi possível editar</p>";
                 header('Location: ../pessoa');
             }
+    }
+}

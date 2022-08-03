@@ -109,8 +109,8 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer border-0">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                    <input type="button" class="btn btn-primary" name="btn_cadastrar_pessoa" id="btn_cadastrar_pessoa" value="Cadastrar">
+                                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fechar</button>
+                                    <input type="button" class="btn btn-primary btn-sm" name="btn_cadastrar_pessoa" id="btn_cadastrar_pessoa" value="Cadastrar">
                                 </div>
                             </form>
                             <div class="error_msg_notification position-absolute text-danger" id="error_msg_notification" style="bottom: 10px;"></div>
