@@ -52,6 +52,7 @@ $(document).ready( function () {
     });
 
     $('#btn_cadastrar_pessoa').click(function(){
+        //$('#form_cadastro_pessoas').preventDefault();
 
         var nome           = $('#nome').val();
         var sobre_nome     = $('#sobre_nome').val();
