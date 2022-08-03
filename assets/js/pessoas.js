@@ -5,6 +5,7 @@ $(document).ready( function () {
             }
     });
 
+    // Cadastro novo
     $('#nome').blur(function(){
         if($(this).val() != ''){
             $(this).removeClass('border border-danger');
@@ -116,4 +117,6 @@ $(document).ready( function () {
             $('#form_cadastro_pessoas').submit();
         }
     });
+
+    //Fim cadastro novo
 });
