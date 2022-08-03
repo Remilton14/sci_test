@@ -88,7 +88,8 @@
 
                                                 while($sql_cafe_assoc = mysqli_fetch_assoc($sql_cafe_query)){
 
-                                                    echo "<option value='".$sql_cafe_assoc['id_espaco_cafe']."'>".$sql_cafe_assoc['nome_espaco_cafe']."</option>";
+                                                    if(($sql_cafe_assoc['lotacao_max_cafe'] - $sql_cafe_assoc['qtn_inscritos']) != 0)
+                                                        echo "<option value='".$sql_cafe_assoc['id_espaco_cafe']."'>".$sql_cafe_assoc['nome_espaco_cafe']." - ".($sql_cafe_assoc['lotacao_max_cafe'] - $sql_cafe_assoc['qtn_inscritos'])." vagas</option>";
                                                 }
                                             ?>
                                         </select>
@@ -102,7 +103,8 @@
                                                 $sql_cafe_query = mysqli_query($conn,$sql_cafe);
 
                                                 while($sql_cafe_assoc = mysqli_fetch_assoc($sql_cafe_query)){
-                                                    echo "<option value='".$sql_cafe_assoc['id_espaco_cafe']."'>".$sql_cafe_assoc['nome_espaco_cafe']."</option>";
+                                                    if(($sql_cafe_assoc['lotacao_max_cafe'] - $sql_cafe_assoc['qtn_inscritos']) != 0)
+                                                        echo "<option value='".$sql_cafe_assoc['id_espaco_cafe']."'>".($sql_cafe_assoc['lotacao_max_cafe'] - $sql_cafe_assoc['qtn_inscritos'])."</option>";
                                                 }
                                             ?>
                                         </select>
