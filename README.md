@@ -14,9 +14,9 @@
 
 <h5>Configuração</h5>
 <p>
-  Login: Remilton
-  Pass:  123456
-  DB: importar o backup que esta versionado
+  Login: Remilton<br/>
+  Pass:  123456<br/>
+  DB: importar o backup que esta versionado<br/>
 </p>
 
 <h5>Licença</h5>
