@@ -266,7 +266,7 @@
 
                                                                                     while($sql_cafe_dois_assoc = mysqli_fetch_assoc($sql_cafe_dois_query)){
 
-                                                                                        if($sql_cafe_dois_assoc['id_espaco_cafe'] === $sql_pessoas_assoc['cafe_id_um'])
+                                                                                        if($sql_cafe_dois_assoc['id_espaco_cafe'] === $sql_pessoas_assoc['cafe_id_dois'])
                                                                                             echo "<option value='".$sql_cafe_dois_assoc['id_espaco_cafe']."' selected>".$sql_cafe_dois_assoc['nome_espaco_cafe']."</option>";
                                                                                         else
                                                                                             echo "<option value='".$sql_cafe_dois_assoc['id_espaco_cafe']."'>".$sql_cafe_dois_assoc['nome_espaco_cafe']."</option>"; 
