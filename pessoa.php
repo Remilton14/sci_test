@@ -288,7 +288,7 @@
                                                 <!-- Fim edição -->
 
                                                 <!-- Delete -->
-                                                <a href="class/Class.delete.pessoa.php?id_pessoa=<?= $sql_pessoas_assoc['id_pessoa'] ?>&salao_eventos=<?= $sql_pessoas_assoc['sala_id'] ?>" class="d-flex justify-content-center align-items-center bg-primary text-light rounded-circle me-2" style="width:31px;height:31px;text-decoration: none;"><i class='bx bx-message-alt-x'></i></a>
+                                                <a href="class/Class.delete.pessoa.php?id_pessoa=<?= $sql_pessoas_assoc['id_pessoa'] ?>&salao_eventos=<?= $sql_pessoas_assoc['sala_id'] ?>&cafe_um=<?= $sql_pessoas_assoc['cafe_id_um'] ?>&cafe_dois=<?= $sql_pessoas_assoc['cafe_id_dois'] ?>" class="d-flex justify-content-center align-items-center bg-primary text-light rounded-circle me-2" style="width:31px;height:31px;text-decoration: none;"><i class='bx bx-message-alt-x'></i></a>
                                                 
                                             </div>
                                         </td>

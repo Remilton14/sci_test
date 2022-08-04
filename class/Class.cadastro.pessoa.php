@@ -43,8 +43,12 @@ if(!empty($_POST['nome']) && !empty($_POST['sobre_nome']) && !empty($_POST['sala
                     $sql_update_qtn_incritos_query = mysqli_query($conn, $sql_update_qtn_incritos);
     
                     $sql_novo_inscrito_espaco_cafe = $sql_inscritos_espaco_cafe_assoc["qtn_inscritos"] + 1;
+                    //Atualiza o espaço café 1
                     $sql_update_qtn_incritos_espaco_cafe = "UPDATE `espaco_cafe` SET `qtn_inscritos`='$sql_novo_inscrito_espaco_cafe',`datemodified`='$data_atual' WHERE `id_espaco_cafe` = $periodo_cafe_1";
                     $sql_update_qtn_incritos_espaco_cafe_query = mysqli_query($conn, $sql_update_qtn_incritos_espaco_cafe);
+                    //Atualiza o espaço cafe 2
+                    $sql_update_qtn_incritos_espaco_cafe_2 = "UPDATE `espaco_cafe` SET `qtn_inscritos`='$sql_novo_inscrito_espaco_cafe',`datemodified`='$data_atual' WHERE `id_espaco_cafe` = $periodo_cafe_2";
+                    $sql_update_qtn_incritos_espaco_cafe_2_query = mysqli_query($conn, $sql_update_qtn_incritos_espaco_cafe_2);
     
                     mysqli_close($conn);
                     $_SESSION['msg_success'] = "<p id='msg' style='background-color: #3b9d6f;color:#fff;padding: 10px;width: 40%;position: absolute;bottom: 40px;right: 0;box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;'>Cadastrado com sucesso</p>";
