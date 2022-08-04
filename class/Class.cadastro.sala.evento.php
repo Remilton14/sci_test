@@ -2,6 +2,8 @@
 session_start();
 date_default_timezone_set('America/Sao_Paulo');
 include_once 'Class.Conection.php';
+echo "<pre>";
+var_dump($conn);
 
 if(!empty($_POST['nome_sala_de_evento']) && !empty($_POST['lotacao_sala_evento'])){
 

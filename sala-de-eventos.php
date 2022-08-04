@@ -267,5 +267,7 @@
             unset($_SESSION['msg_error']);
         }
 
+    }else{
+        header('Location: ./');
     }
 ?>
