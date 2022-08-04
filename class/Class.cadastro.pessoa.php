@@ -22,7 +22,7 @@ if(!empty($_POST['nome']) && !empty($_POST['sobre_nome']) && !empty($_POST['sala
         $sql_inscritos_query = mysqli_query($conn, $sql_inscritos);
         $sql_inscritos_assoc = mysqli_fetch_assoc($sql_inscritos_query);
 
-        //Calcula o total de inscritos noespaço de café
+        //Calcula o total de inscritos no espaço de café
         $sql_inscritos_espaco_cafe = "SELECT * FROM `espaco_cafe` WHERE `id_espaco_cafe` = $periodo_cafe_1";
         $sql_inscritos_espaco_cafe_query = mysqli_query($conn, $sql_inscritos_espaco_cafe);
         $sql_inscritos_espaco_cafe_assoc = mysqli_fetch_assoc($sql_inscritos_espaco_cafe_query);
