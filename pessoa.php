@@ -99,12 +99,12 @@
                                         <select class="form-select" aria-label="Default select example" name="periodo_cafe_2" id="periodo_cafe_2" disabled>
                                             <option value="" selected>Selecione uma opção</option>
                                             <?php
-                                                $sql_cafe = "SELECT * FROM `espaco_cafe` WHERE 1";
-                                                $sql_cafe_query = mysqli_query($conn,$sql_cafe);
+                                                $sql_cafe2 = "SELECT * FROM `espaco_cafe` WHERE 1";
+                                                $sql_cafe2_query = mysqli_query($conn,$sql_cafe2);
 
-                                                while($sql_cafe_assoc = mysqli_fetch_assoc($sql_cafe_query)){
-                                                    if(($sql_cafe_assoc['lotacao_max_cafe'] - $sql_cafe_assoc['qtn_inscritos']) != 0)
-                                                        echo "<option value='".$sql_cafe_assoc['id_espaco_cafe']."'>".($sql_cafe_assoc['lotacao_max_cafe'] - $sql_cafe_assoc['qtn_inscritos'])."</option>";
+                                                while($sql_cafe2_assoc = mysqli_fetch_assoc($sql_cafe2_query)){
+                                                    if(($sql_cafe2_assoc['lotacao_max_cafe'] - $sql_cafe2_assoc['qtn_inscritos']) != 0)
+                                                        echo "<option value='".$sql_cafe2_assoc['id_espaco_cafe']."'>".$sql_cafe2_assoc['nome_espaco_cafe']." - ".($sql_cafe2_assoc['lotacao_max_cafe'] - $sql_cafe2_assoc['qtn_inscritos'])." vagas</option>";
                                                 }
                                             ?>
                                         </select>
@@ -266,10 +266,10 @@
 
                                                                                     while($sql_cafe_dois_assoc = mysqli_fetch_assoc($sql_cafe_dois_query)){
 
-                                                                                        if($sql_cafe_dois_assoc['id_espaco_cafe'] === $sql_pessoas_assoc['cafe_id_dois'])
+                                                                                        if($sql_cafe_dois_assoc['id_espaco_cafe'] === $sql_pessoas_assoc['cafe_id_um'])
                                                                                             echo "<option value='".$sql_cafe_dois_assoc['id_espaco_cafe']."' selected>".$sql_cafe_dois_assoc['nome_espaco_cafe']."</option>";
                                                                                         else
-                                                                                            echo "<option value='".$sql_cafe_dois_assoc['id_espaco_cafe']."'>".$sql_cafe_dois_assoc['nome_espaco_cafe']."</option>";
+                                                                                            echo "<option value='".$sql_cafe_dois_assoc['id_espaco_cafe']."'>".$sql_cafe_dois_assoc['nome_espaco_cafe']."</option>"; 
                                                                                     }
                                                                                 ?>
                                                                             </select>
