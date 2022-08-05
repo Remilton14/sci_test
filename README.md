@@ -21,5 +21,6 @@
 
 <h5>Licença</h5>
 <p>
-  É vedada a comercialização de qualquer forma, de todo ou de parte do código. Será somente autorizado para fins de teste de empresas ou desenvolvedores.
+  É vedada a comercialização de qualquer forma, de todo ou de parte do código. Vedado o uso para eventos empresariais.<br/>
+  Será somente autorizado para fins de teste de empresas ou desenvolvedores.
 </p>
