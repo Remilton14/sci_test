@@ -26,6 +26,9 @@
     }
 </style>
 <body>
+    <div class="d-flex justify-content-center align-items-center spinner position-absolute" id="spinner" style="width: 100%;height: 100vh;background-color: #ffffffe1;z-index: 1;">
+        <div>Aguarde...</div>
+    </div>
     <main class="main" id="main">
         <div class="container-menu shadow-sm">
             <div class="container">
@@ -198,6 +201,17 @@
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.js"></script>
     <script type="text/javascript" src="assets/js/sala_eventos.js"></script>
     <script>
+        //Spinner
+        window.onload = function(){
+            var spinner = document.getElementById('spinner');
+            setTimeout(function() {
+                    
+                spinner.style.visibility = 'hidden';
+                spinner.style.opacity = '0';
+
+            }, 1500);
+        }
+
         $(document).ready(function(){
             const msg_success = <?php echo (isset($_SESSION['msg_success'])) ? 1 : 0 ?>;
             const msg_error = <?php echo (isset($_SESSION['msg_error'])) ? 1 : 0 ?>;

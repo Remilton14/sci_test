@@ -38,12 +38,12 @@ if(!empty($_POST['nome']) && !empty($_POST['sobre_nome']) && !empty($_POST['sala
         
                 if($novo_id > 0 && $novo_id != ''){
     
-                    $sql_novo_inscrito       = ($sql_lotacao_max_assoc['qnt_inscritos'] > 0 ) ? $sql_lotacao_max_assoc['qnt_inscritos'] + 1 : 0;
-                    
+                    $sql_novo_inscrito       = $sql_lotacao_max_assoc['qnt_inscritos'] + 1;
+
                     $sql_update_qtn_incritos = "UPDATE `sala_evento` SET `qnt_inscritos` = $sql_novo_inscrito,`datemodified`='$data_atual' WHERE `id_sala` = $salao_eventos";
                     $sql_update_qtn_incritos_query = mysqli_query($conn, $sql_update_qtn_incritos);
     
-                    $sql_novo_inscrito_espaco_cafe = ($sql_inscritos_espaco_cafe_assoc["qtn_inscritos"] > 0) ? $sql_inscritos_espaco_cafe_assoc["qtn_inscritos"] + 1 : 0;
+                    $sql_novo_inscrito_espaco_cafe = $sql_inscritos_espaco_cafe_assoc["qtn_inscritos"] + 1;
                     //Atualiza o espaço café 1
                     $sql_update_qtn_incritos_espaco_cafe = "UPDATE `espaco_cafe` SET `qtn_inscritos`='$sql_novo_inscrito_espaco_cafe',`datemodified`='$data_atual' WHERE `id_espaco_cafe` = $periodo_cafe_1";
                     $sql_update_qtn_incritos_espaco_cafe_query = mysqli_query($conn, $sql_update_qtn_incritos_espaco_cafe);
